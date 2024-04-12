@@ -1,0 +1,45 @@
+#Bai thuc hanh lab6
+#Cau5
+#24/11/2004
+#MSSV:522H0148
+#Tacgia:PhamDangThanhTrung
+#Version 1.0
+.data
+	Thongbao: .asciiz "Moi ban nhap vao so nguyen:"
+	Xuat1: .asciiz "Day la so duong"
+	Xuat2: .asciiz "Day la so am"
+	Xuat3: .asciiz "Day la so 0"
+.text
+.globl main
+main:
+	li $v0,4
+	la $a0, Thongbao
+	syscall
+	li $v0,5
+	syscall
+	move $t2, $v0
+	li $t0, 0 
+	li $t1, 1 
+	li $t4, 1 
+	rem $t3,$t2,3
+	beq $zero,$t3,khong
+sosanh:
+	bgt $zero,$t3,am
+am:
+	li $v0, 4
+	la $a0, Xuat2
+	syscall
+	j Exit
+duong:
+	li $v0, 4
+	la $a0, Xuat1
+	syscall
+	j Exit
+khong:
+	li $v0, 4
+	la $a0, Xuat3
+	syscall
+Exit:
+	li $v0,10
+	syscall
+	
